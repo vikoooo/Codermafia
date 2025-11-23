@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Play Console - Looksmate</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Google Sans', 'Roboto', Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #202124;
+        }
+
+        .header {
+            background-color: white;
+            border-bottom: 1px solid #dadce0;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .menu-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+
+        .menu-line {
+            width: 24px;
+            height: 3px;
+            background-color: #5f6368;
+        }
+
+        .google-play-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 22px;
+            color: #5f6368;
+        }
+
+        .play-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(45deg, #ea4335, #fbbc04, #34a853, #4285f4);
+            clip-path: polygon(20% 0%, 100% 50%, 20% 100%, 0% 75%, 0% 25%);
+        }
+
+        .console-text {
+            font-weight: 400;
+            color: #5f6368;
+        }
+
+        .user-section {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .help-icon, .notification-icon, .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #e8eaed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .user-avatar {
+            background-color: #ea4335;
+            color: white;
+            font-weight: 500;
+        }
+
+        .sidebar {
+            width: 256px;
+            background-color: white;
+            height: calc(100vh - 65px);
+            border-right: 1px solid #dadce0;
+            position: fixed;
+            padding: 8px 0;
+        }
+
+        .app-selector {
+            padding: 8px 16px;
+            margin: 8px;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .app-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .app-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .nav-item {
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            cursor: pointer;
+            color: #5f6368;
+        }
+
+        .nav-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .nav-item.active {
+            background-color: #e8f0fe;
+            color: #1a73e8;
+            border-right: 3px solid #1a73e8;
+        }
+
+        .main-content {
+            margin-left: 256px;
+            padding: 24px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #5f6368;
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        .page-title {
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .status-badge {
+            background-color: #34a853;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .content-card {
+            background-color: white;
+            border-radius: 8px;
+            border: 1px solid #dadce0;
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid #dadce0;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .card-content {
+            padding: 24px;
+        }
+
+        .release-track {
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+
+        .track-header {
+            padding: 16px;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #dadce0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .track-title {
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .track-status {
+            color: #5f6368;
+            font-size: 14px;
+        }
+
+        .release-details {
+            padding: 16px;
+        }
+
+        .apk-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            margin-bottom: 12px;
+        }
+
+        .apk-icon {
+            width: 48px;
+            height: 48px;
+            background-color: #34a853;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+        }
+
+        .apk-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        .apk-details {
+            flex: 1;
+        }
+
+        .apk-name {
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .apk-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 14px;
+            color: #5f6368;
+        }
+
+        .upload-date {
+            color: #188038;
+            font-weight: 500;
+        }
+
+        .review-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px;
+            background-color: #e6f4ea;
+            border-radius: 4px;
+            margin-top: 16px;
+        }
+
+        .checkmark {
+            width: 20px;
+            height: 20px;
+            background-color: #34a853;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .checkmark::after {
+            content: '✓';
+            color: white;
+            font-size: 14px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .btn {
+            padding: 8px 24px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background-color: #1a73e8;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #1557b0;
+            box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: #1a73e8;
+            border: 1px solid #dadce0;
+        }
+
+        .btn-secondary:hover {
+            background-color: #f8f9fa;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .metric-card {
+            background-color: #f8f9fa;
+            padding: 16px;
+            border-radius: 8px;
+        }
+
+        .metric-label {
+            font-size: 12px;
+            color: #5f6368;
+            margin-bottom: 8px;
+        }
+
+        .metric-value {
+            font-size: 24px;
+            font-weight: 500;
+            color: #202124;
+        }
+
+        .metric-change {
+            font-size: 12px;
+            color: #188038;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-left">
+            <div class="menu-icon">
+                <div class="menu-line"></div>
+                <div class="menu-line"></div>
+                <div class="menu-line"></div>
+            </div>
+            <div class="google-play-logo">
+                <div class="play-icon"></div>
+                <span>Google Play</span>
+                <span class="console-text">Console</span>
+            </div>
+        </div>
+        <div class="user-section">
+            <div class="help-icon">?</div>
+            <div class="notification-icon">🔔</div>
+            <div class="user-avatar">JD</div>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="app-selector">
+            <div class="app-info">
+                <div class="app-icon">LM</div>
+                <div>
+                    <div style="font-weight: 500;">Looksmate</div>
+                    <div style="font-size: 12px; color: #5f6368;">com.looksmate.app</div>
+                </div>
+            </div>
+            <span>▼</span>
+        </div>
+
+        <div class="nav-item">
+            <span>📊</span>
+            <span>Dashboard</span>
+        </div>
+        <div class="nav-item active">
+            <span>🚀</span>
+            <span>Release</span>
+        </div>
+        <div class="nav-item">
+            <span>📈</span>
+            <span>Statistics</span>
+        </div>
+        <div class="nav-item">
+            <span>💰</span>
+            <span>Monetization</span>
+        </div>
+        <div class="nav-item">
+            <span>👥</span>
+            <span>Users & feedback</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="breadcrumb">
+            <span>All applications</span>
+            <span>›</span>
+            <span>Looksmate</span>
+            <span>›</span>
+            <span>Release</span>
+            <span>›</span>
+            <span>Production</span>
+        </div>
+
+        <div class="page-title">
+            <h1>Production</h1>
+            <span class="status-badge">ACTIVE</span>
+        </div>
+
+        <!-- Release Management Card -->
+        <div class="content-card">
+            <div class="card-header">
+                Release management
+            </div>
+            <div class="card-content">
+                <div class="release-track">
+                    <div class="track-header">
+                        <div>
+                            <div class="track-title">Production track</div>
+                            <div class="track-status">Latest release • Version 1.2.5</div>
+                        </div>
+                        <button class="btn btn-primary">Create new release</button>
+                    </div>
+                    <div class="release-details">
+                        <div class="apk-item">
+                            <div class="apk-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                                </svg>
+                            </div>
+                            <div class="apk-details">
+                                <div class="apk-name">app-release.apk</div>
+                                <div class="apk-meta">
+                                    <span>Version code: 125</span>
+                                    <span>•</span>
+                                    <span>Size: 18.4 MB</span>
+                                    <span>•</span>
+                                    <span class="upload-date">Uploaded: Nov 16, 2025, 3:47 PM</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="review-status">
+                            <div class="checkmark"></div>
+                            <div>
+                                <div style="font-weight: 500;">Review completed</div>
+                                <div style="font-size: 14px; color: #5f6368;">Your app update is live on Google Play</div>
+                            </div>
+                        </div>
+
+                        <div class="action-buttons">
+                            <button class="btn btn-secondary">View release details</button>
+                            <button class="btn btn-secondary">Download APK</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Previous Release -->
+                <div class="release-track" style="opacity: 0.7;">
+                    <div class="track-header">
+                        <div>
+                            <div class="track-title">Previous release</div>
+                            <div class="track-status">Version 1.2.4 • Nov 9, 2025</div>
+                        </div>
+                    </div>
+                    <div class="release-details">
+                        <div class="apk-item">
+                            <div class="apk-icon" style="background-color: #5f6368;">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                                </svg>
+                            </div>
+                            <div class="apk-details">
+                                <div class="apk-name">app-release.apk</div>
+                                <div class="apk-meta">
+                                    <span>Version code: 124</span>
+                                    <span>•</span>
+                                    <span>Size: 18.2 MB</span>
+                                    <span>•</span>
+                                    <span style="color: #5f6368;">Uploaded: Nov 9, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- App Statistics Card -->
+        <div class="content-card">
+            <div class="card-header">
+                Release statistics
+            </div>
+            <div class="card-content">
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-label">Active installs</div>
+                        <div class="metric-value">52,847</div>
+                        <div class="metric-change">↑ 12.3% from last week</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">User rating</div>
+                        <div class="metric-value">4.6 ⭐</div>
+                        <div class="metric-change">1,234 reviews</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Crash rate</div>
+                        <div class="metric-value">0.21%</div>
+                        <div class="metric-change">↓ 0.05% improvement</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">ANR rate</div>
+                        <div class="metric-value">0.08%</div>
+                        <div class="metric-change">Stable</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
