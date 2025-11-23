@@ -14,14 +14,18 @@ This mockup simulates the Google Play Developer Console interface showing the Lo
 - **Latest Version**: 1.2.5 (Version code: 125)
 - **APK Upload Date**: November 16, 2025, 3:47 PM (last week)
 - **APK Size**: 18.4 MB
-- **Status**: Production release, ACTIVE
-- **Review Status**: ✅ Review completed - Live on Google Play
+- **Track**: Internal testing
+- **Status**: ⏱ IN REVIEW - Under Google Play review
+- **Review Status**: 
+  - ✅ APK successfully uploaded (Nov 16, 2025, 3:47 PM)
+  - ⏱ Review in progress (Started: Nov 16, 2025, 3:50 PM)
+  - ⏳ Pending publication (Estimated: 2-3 hours)
 
-### App Statistics Shown
-- Active installs: 52,847 (↑ 12.3% from last week)
-- User rating: 4.6 ⭐ (1,234 reviews)
-- Crash rate: 0.21% (↓ 0.05% improvement)
-- ANR rate: 0.08% (Stable)
+### Testing Status Shown
+- Test users: 127 internal testers
+- Review status: Pending (Under review)
+- Pre-launch report: Running (Device testing in progress)
+- Compliance check: Pending (Policy review in queue)
 
 ## How to Use
 

@@ -426,6 +426,18 @@
 
     <!-- Main Content -->
     <div class="main-content">
+        <!-- Review Notice Banner -->
+        <div style="background-color: #fef7e0; border: 1px solid #fbbc04; border-radius: 8px; padding: 16px 24px; margin-bottom: 24px; display: flex; align-items: center; gap: 16px;">
+            <div style="font-size: 24px;">⏱</div>
+            <div style="flex: 1;">
+                <div style="font-weight: 500; color: #ea8600; margin-bottom: 4px;">Your app is currently under review</div>
+                <div style="font-size: 14px; color: #5f6368;">
+                    Looksmate version 1.2.5 was successfully uploaded on November 16, 2025 at 3:47 PM and is being reviewed by the Google Play team. 
+                    This usually takes 2-3 hours for internal testing releases. You'll receive an email once the review is complete.
+                </div>
+            </div>
+            <button class="btn btn-secondary" style="white-space: nowrap;">Refresh status</button>
+        </div>
         <div class="breadcrumb">
             <span>All applications</span>
             <span>›</span>
@@ -433,12 +445,14 @@
             <span>›</span>
             <span>Release</span>
             <span>›</span>
-            <span>Production</span>
+            <span>Testing</span>
+            <span>›</span>
+            <span>Internal testing</span>
         </div>
 
         <div class="page-title">
-            <h1>Production</h1>
-            <span class="status-badge">ACTIVE</span>
+            <h1>Internal testing</h1>
+            <span class="status-badge" style="background-color: #fbbc04;">IN REVIEW</span>
         </div>
 
         <!-- Release Management Card -->
@@ -450,10 +464,10 @@
                 <div class="release-track">
                     <div class="track-header">
                         <div>
-                            <div class="track-title">Production track</div>
-                            <div class="track-status">Latest release • Version 1.2.5</div>
+                            <div class="track-title">Internal testing track</div>
+                            <div class="track-status">Pending review • Version 1.2.5</div>
                         </div>
-                        <button class="btn btn-primary">Create new release</button>
+                        <button class="btn btn-primary">View details</button>
                     </div>
                     <div class="release-details">
                         <div class="apk-item">
@@ -474,11 +488,13 @@
                             </div>
                         </div>
 
-                        <div class="review-status">
-                            <div class="checkmark"></div>
+                        <div class="review-status" style="background-color: #fef7e0; border-left: 4px solid #fbbc04;">
+                            <div class="checkmark" style="background-color: #fbbc04;">
+                                <span style="color: white; font-size: 16px;">⏱</span>
+                            </div>
                             <div>
-                                <div style="font-weight: 500;">Review completed</div>
-                                <div style="font-size: 14px; color: #5f6368;">Your app update is live on Google Play</div>
+                                <div style="font-weight: 500; color: #ea8600;">Review in progress</div>
+                                <div style="font-size: 14px; color: #5f6368;">Your app is being reviewed by Google Play • Usually takes 2-3 hours</div>
                             </div>
                         </div>
 
@@ -489,30 +505,34 @@
                     </div>
                 </div>
 
-                <!-- Previous Release -->
-                <div class="release-track" style="opacity: 0.7;">
-                    <div class="track-header">
+                <!-- Review Timeline -->
+                <div class="release-track">
+                    <div class="track-header" style="background-color: #e8f0fe;">
                         <div>
-                            <div class="track-title">Previous release</div>
-                            <div class="track-status">Version 1.2.4 • Nov 9, 2025</div>
+                            <div class="track-title">Review timeline</div>
+                            <div class="track-status">Submitted for review • Nov 16, 2025, 3:47 PM</div>
                         </div>
                     </div>
                     <div class="release-details">
-                        <div class="apk-item">
-                            <div class="apk-icon" style="background-color: #5f6368;">
-                                <svg viewBox="0 0 24 24">
-                                    <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
-                                </svg>
+                        <div style="padding: 12px; background-color: #f8f9fa; border-radius: 4px; margin-bottom: 12px;">
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <span style="color: #34a853;">✓</span>
+                                <span style="color: #5f6368;">APK successfully uploaded</span>
+                                <span style="margin-left: auto; font-size: 12px; color: #5f6368;">Nov 16, 2025, 3:47 PM</span>
                             </div>
-                            <div class="apk-details">
-                                <div class="apk-name">app-release.apk</div>
-                                <div class="apk-meta">
-                                    <span>Version code: 124</span>
-                                    <span>•</span>
-                                    <span>Size: 18.2 MB</span>
-                                    <span>•</span>
-                                    <span style="color: #5f6368;">Uploaded: Nov 9, 2025</span>
-                                </div>
+                        </div>
+                        <div style="padding: 12px; background-color: #fef7e0; border-radius: 4px; margin-bottom: 12px;">
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <span style="color: #fbbc04;">⏱</span>
+                                <span style="color: #ea8600; font-weight: 500;">Review in progress</span>
+                                <span style="margin-left: auto; font-size: 12px; color: #5f6368;">Started: Nov 16, 2025, 3:50 PM</span>
+                            </div>
+                        </div>
+                        <div style="padding: 12px; background-color: #f8f9fa; border-radius: 4px;">
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <span style="color: #5f6368;">○</span>
+                                <span style="color: #5f6368;">Pending publication</span>
+                                <span style="margin-left: auto; font-size: 12px; color: #5f6368;">Estimated: 2-3 hours</span>
                             </div>
                         </div>
                     </div>
@@ -520,32 +540,32 @@
             </div>
         </div>
 
-        <!-- App Statistics Card -->
+        <!-- Testing Status Card -->
         <div class="content-card">
             <div class="card-header">
-                Release statistics
+                Testing status
             </div>
             <div class="card-content">
                 <div class="metrics-grid">
                     <div class="metric-card">
-                        <div class="metric-label">Active installs</div>
-                        <div class="metric-value">52,847</div>
-                        <div class="metric-change">↑ 12.3% from last week</div>
+                        <div class="metric-label">Test users</div>
+                        <div class="metric-value">127</div>
+                        <div class="metric-change">Internal testers added</div>
                     </div>
                     <div class="metric-card">
-                        <div class="metric-label">User rating</div>
-                        <div class="metric-value">4.6 ⭐</div>
-                        <div class="metric-change">1,234 reviews</div>
+                        <div class="metric-label">Review status</div>
+                        <div class="metric-value">Pending</div>
+                        <div class="metric-change" style="color: #ea8600;">Under review</div>
                     </div>
                     <div class="metric-card">
-                        <div class="metric-label">Crash rate</div>
-                        <div class="metric-value">0.21%</div>
-                        <div class="metric-change">↓ 0.05% improvement</div>
+                        <div class="metric-label">Pre-launch report</div>
+                        <div class="metric-value">Running</div>
+                        <div class="metric-change">Device testing in progress</div>
                     </div>
                     <div class="metric-card">
-                        <div class="metric-label">ANR rate</div>
-                        <div class="metric-value">0.08%</div>
-                        <div class="metric-change">Stable</div>
+                        <div class="metric-label">Compliance check</div>
+                        <div class="metric-value">Pending</div>
+                        <div class="metric-change">Policy review in queue</div>
                     </div>
                 </div>
             </div>
