@@ -708,5 +708,12 @@
     {"Question": "Capital Of Zimbabwe", "Answer": "Harare"},
     {"Question": "Capital Of Belgium", "Answer": "Brussels"}
   ]
+},
+"Medical": {
+  "PatientRecords": {
+    "1": [
+      {"Date": "22 November", "Condition": "Dengue", "Status": "Positive", "Stage": "Severe"}
+    ]
+  }
 }
 }
